@@ -13,13 +13,13 @@ class AnnoucementFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 12; $i++) {
             $announcement = new Announcement();
             $announcement->setTitle($faker->sentence())
                         ->setDescription($faker->sentence())
                         ->setCreatedAt(new \DateTimeImmutable())
                         ->setUpdatedAt(new \DateTimeImmutable())
-                        ->setImage($faker->imageUrl());
+                        ->setImage('https://placehold.co/600x400');
 
             $manager->persist($announcement);
         }

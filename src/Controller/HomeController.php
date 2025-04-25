@@ -4,14 +4,17 @@ namespace App\Controller;
 
 use App\Repository\AnnouncementRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
-    function home(AnnouncementRepository $announcementRepository) {
-        $annoucements = $announcementRepository->findBy([], ['created_at' => 'DESC']);
+    #[Route('/', name: 'home_index', methods: ['GET'])]
+    function index(AnnouncementRepository $announcementRepository) {
+        $annoucements = $announcementRepository->findBy([], ['createdAt' => 'DESC']);
 
-        return $this->render('home.html.twig');
+        return $this->render('home/index.html.twig', [
+            'announcements' => $annoucements
+        ]);
     }
 
 }
